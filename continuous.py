@@ -8,16 +8,16 @@ class Continuous:
         
         if fileCSV is None:
             self.pathBank = './dataset/dataset.csv'
-            self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=1, index_col=1)
+            self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=1)
         else:
             self.fileCSV = fileCSV
             
         self.continuous = self.fileCSV.select_dtypes(include=[np.number])
         self.pathFileResult = './results/DQR-ContinuousFeatures.csv';
-        print(self.fileCSV)
-    
+        
     def get_continuous(self):
         print("continuous : ",self.continuous)
+        
         if self.continuous is not None:
             print("Continuous is not None")
             return self.continuous
@@ -27,16 +27,9 @@ class Continuous:
     
     def write_results(self):
         pd.DataFrame(self.continuous).to_csv(path_or_buf=self.pathFileResult)
-    
+        
     def draw_DQR(self):
-        
         tableContinuous = self.get_continuous()          
-                    
-        
-    def launch_test(self):
-        csvFile = self.get_csv_file()
-        #self.write_results()
-        
-        self.draw()
-        
-Continuous();
+
+                            
+Continuous().write_results();
