@@ -19,17 +19,29 @@ class Continuous:
         print("continuous : ",self.continuous)
         
         if self.continuous is not None:
-            print("Continuous is not None")
             return self.continuous
         else:
-            print("Continuous is None")
             return pd.read_csv(filepath_or_buffer=self.pathFileResult)
     
     def write_results(self):
         pd.DataFrame(self.continuous).to_csv(path_or_buf=self.pathFileResult)
         
     def draw_DQR(self):
-        tableContinuous = self.get_continuous()          
+        
+        for feature in self.get_continuous().items():
+            
+            feature_name = feature[0]
+            print(feature[0])
+#            count
+#            miss_pourcentage
+#            cardinality
+#            min_value
+#            first_quarter
+#            mean
+#            median
+#            third_quarter
+#            max_value
+#            std_dev
 
-                            
-Continuous().write_results();
+cont = Continuous();
+cont.draw_DQR();
