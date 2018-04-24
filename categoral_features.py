@@ -29,17 +29,18 @@ class CategoricalFeatures:
         else:
             pd.DataFrame(table).to_csv(path_or_buf=path, header = header_columns, index = False);
         
+        
+        
     def draw_DQR(self):
         
         categoral_header = ["Feature name","Count","% Miss", "Card", "Mode", "Mode Freq", "Mode %","2nd Mode","2nd Mode Freq","2nd Mode %"]
         categoral_columns = self.get_categoral();
         categoral_features_table = [];
             
-            
         for col in categoral_columns:
-            print('Affichage de la colonne')
+            print('Display col')
             print(self.categorical[col]);
-            
+  
 #            Feature name
             feature = [col];
             
@@ -55,18 +56,21 @@ class CategoricalFeatures:
             cardinality = self.categorical[col].unique().size;
             feature.append(cardinality);
             
+ #           print(copySecondMode)
+            print(self.categorical.columns)
+            
 #           Feature Mode
-            modeTab = stats.mode(self.categorical[col]);
+            modeTab = stats.mode(self.categorical[col]);            
             mode =  modeTab[0] 
             countMode = modeTab[1];
             feature.append(mode);
             count = len(self.categorical[col])
             print(count)
+            
 #           Feature Mode Freq
             modeFreq = (float(countMode) / count) * 100
             print(modeFreq)
             feature.append(np.argmax(modeFreq));
-            
             
 #           Feature Mode %
 #            modePercent = max(self.categorical[col].values())/sum(self.categorical[col].values()),            
