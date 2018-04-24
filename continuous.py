@@ -12,18 +12,19 @@ class Continuous:
         else:
             self.fileCSV = fileCSV
             
-        self.continuous = self.fileCSV.select_dtypes(include=[np.number])
-        self.pathFileResult = './results/DQR-ContinuousFeatures.csv';
+        self.continuous = self.fileCSV.select_dtypes(include=['integer'])
+        self.pathContinuousFeatures = './results/continuous_features.csv';
+        self.pathDQR = './results/DQR_continuous.csv';
         
     def get_continuous(self):        
         if self.continuous is not None:
             return self.continuous
         else:
-            return pd.read_csv(filepath_or_buffer=self.pathFileResult)
+            return pd.read_csv(filepath_or_buffer=self.pathContinuousFeatures)
     
     def write_results(self, table=None, header_columns=None, path=None):
         if table is None and path is None:
-            pd.DataFrame(self.continuous).to_csv(path_or_buf=self.pathFileResult);
+            pd.DataFrame(self.continuous).to_csv(path_or_buf=self.pathContinuousFeatures);
         else:
             pd.DataFrame(table).to_csv(path_or_buf=path, header = header_columns, index = False);
         
@@ -31,7 +32,7 @@ class Continuous:
         
         continuous_header = ["Feature name","Count","% Miss", "Card", "Min", "1st Qrt", "Mean","Median","3rd Qrt","Max", "Standard deviation" ]
         continuous_columns = self.get_continuous();
-        continuous_features_table = []
+        continuous_features_table = [];
         
         for col in continuous_columns:
             
@@ -83,7 +84,7 @@ class Continuous:
 #        Write continuous table
         self.write_results();
 #        Write continuous features table
-        self.write_results(continuous_features_table, continuous_header, './results/continuous_statistics.csv');
+        self.write_results(continuous_features_table, continuous_header, self.pathDQR);
  
 
 
