@@ -29,7 +29,7 @@ class Continuous:
         
     def draw_DQR(self):
         
-        continuous_header = ["Feature name","Count","% Miss", "Card", "Min", "1st Qrt", "Mean","Median","3rd Qrt","Max", "std" ]
+        continuous_header = ["Feature name","Count","% Miss", "Card", "Min", "1st Qrt", "Mean","Median","3rd Qrt","Max", "Standard deviation" ]
         continuous_columns = self.get_continuous();
         continuous_features_table = []
         
@@ -55,7 +55,7 @@ class Continuous:
             feature.append(min_value);
             
 #            1st quarter
-            first_quarter = np.percentile(self.continuous[col],25);
+            first_quarter = self.continuous[col].quantile(0.25);
             feature.append(first_quarter);
             
 #            Feature mean
@@ -63,28 +63,29 @@ class Continuous:
             feature.append(mean);
             
 #            Feature median
-            median = np.percentile(self.continuous[col],50);
+            median = self.continuous[col].quantile(0.5);
             feature.append(median);
             
 #            3rd quarter
-            third_quarter = np.percentile(self.continuous[col],75); 
+            third_quarter = self.continuous[col].quantile(0.75);
             feature.append(third_quarter);
             
 #            Feature max
             max_value = np.max(self.continuous[col]);
             feature.append(max_value);            
             
-#            Feature std
+#            Feature standard deviation
             std = np.round(np.std(self.continuous[col]), decimals=2);
             feature.append(std);
                 
             continuous_features_table.append(feature);
             
-#        print(continuous_features_table)
+#        Write continuous table
+        self.write_results();
+#        Write continuous features table
         self.write_results(continuous_features_table, continuous_header, './results/continuous_statistics.csv');
  
 
 
 cont = Continuous();
-#cont.write_results();
 cont.draw_DQR();
