@@ -21,34 +21,70 @@ class Continuous:
         else:
             return pd.read_csv(filepath_or_buffer=self.pathFileResult)
     
-    def write_results(self):
-        pd.DataFrame(self.continuous).to_csv(path_or_buf=self.pathFileResult)
+    def write_results(self, table=None, header_columns=None, path=None):
+        if table is None and path is None:
+            pd.DataFrame(self.continuous).to_csv(path_or_buf=self.pathFileResult);
+        else:
+            pd.DataFrame(table).to_csv(path_or_buf=path, header = header_columns, index = False);
         
     def draw_DQR(self):
         
-        continuous_columns = self.continuous;  
-        continuous_header = ["Features","Count","% Miss", "Card", "Min", "1st Qrt", "Mean","Median","3rd Qrt", "std" ]
+        continuous_header = ["Feature name","Count","% Miss", "Card", "Min", "1st Qrt", "Mean","Median","3rd Qrt","Max", "std" ]
+        continuous_columns = self.get_continuous();
         continuous_features_table = []
         
         for col in continuous_columns:
-            feature = [col]
-            feature.append(self.continuous[col].size)
-            feature.append((self.continuous[col].isnull().sum()/self.continuous[col].size) * 100)
-            feature.append(self.continuous[col].unique().size)
-            feature.append(np.min(self.continuous[col]))
-            feature.append(np.percentile(self.continuous[col],25))
-            feature.append(np.mean(self.continuous[col]))
-            feature.append(np.percentile(self.continuous[col],50))
-            feature.append(np.percentile(self.continuous[col],75))
-            feature.append(np.std(self.continuous[col]))
+            
+#            Feature name
+            feature = [col];
+            
+#            Feature count
+            count = self.continuous[col].size;
+            feature.append(count);
+            
+#            Feature % Miss
+            miss_pourcentage = (self.continuous[col].isnull().sum()/self.continuous[col].size) * 100;
+            feature.append(miss_pourcentage);
+            
+#            Feature cardinality
+            cardinality = self.continuous[col].unique().size;
+            feature.append(cardinality);
+            
+#            Min value of the feature
+            min_value = np.min(self.continuous[col]);
+            feature.append(min_value);
+            
+#            1st quarter
+            first_quarter = np.percentile(self.continuous[col],25);
+            feature.append(first_quarter);
+            
+#            Feature mean
+            mean = np.round(np.mean(self.continuous[col]), decimals=2);  
+            feature.append(mean);
+            
+#            Feature median
+            median = np.percentile(self.continuous[col],50);
+            feature.append(median);
+            
+#            3rd quarter
+            third_quarter = np.percentile(self.continuous[col],75); 
+            feature.append(third_quarter);
+            
+#            Feature max
+            max_value = np.max(self.continuous[col]);
+            feature.append(max_value);            
+            
+#            Feature std
+            std = np.round(np.std(self.continuous[col]), decimals=2);
+            feature.append(std);
                 
             continuous_features_table.append(feature);
-
-        print(continuous_features_table);
             
+#        print(continuous_features_table)
+        self.write_results(continuous_features_table, continuous_header, './results/continuous_statistics.csv');
+ 
 
 
 cont = Continuous();
 #cont.write_results();
-#cont.get_continuous();
 cont.draw_DQR();
