@@ -84,6 +84,3 @@ class Categorical:
         self.write_results();
 #        Write continuous features table
         self.write_results(categorical_features_table, categorical_header, self.pathDQR);
-      
-                
-Categorical().draw_DQR();

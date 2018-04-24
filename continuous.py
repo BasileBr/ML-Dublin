@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import plotly as ply
+import collections
 
 class Continuous:
     
@@ -8,13 +8,13 @@ class Continuous:
         
         if fileCSV is None:
             self.pathBank = './dataset/dataset.csv'
-            self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=0)
+            self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=1)
         else:
             self.fileCSV = fileCSV
             
-        self.continuous = self.fileCSV.select_dtypes(include=['integer'])
-        self.pathFeatures = './results/continuous_features.csv';
-        self.pathDQR = './results/DQR_continuous.csv';
+        self.continuous = self.fileCSV.select_dtypes(include=[np.number])
+        self.pathFeatures = './results/continuous-features.csv';
+        self.pathDQR = './results/E-DQR-continuous.csv';
         
     def get_continuous(self):        
         if self.continuous is not None:
@@ -26,67 +26,37 @@ class Continuous:
         if table is None and path is None:
             pd.DataFrame(self.continuous).to_csv(path_or_buf=self.pathFeatures);
         else:
-            pd.DataFrame(table).to_csv(path_or_buf=path, header = header_columns, index = False);
+            pd.DataFrame(table).to_csv(path_or_buf= path, header= header_columns, index= False);
         
     def draw_DQR(self):
         
-        continuous_header = ["Feature name","Count","% Miss", "Card", "Min", "1st Qrt", "Mean","Median","3rd Qrt","Max", "Standard deviation" ]
-        continuous_columns = self.get_continuous();
-        continuous_features_table = [];
         
-        for col in continuous_columns:
+        self.__continuous_features_table = [];
+        self.__continuous_header = ["Feature name","Count","% Miss", "Card", "Min", "1st Qrt", "Mean","Median","3rd Qrt","Max", "Standard deviation" ]
+        continuous_columns = self.get_continuous();
+        
+        for cat in continuous_columns:
             
-#            Feature name
-            feature = [col];
+            dataFeature = self.fileCSV[cat];
+            feature = collections.OrderedDict();
             
-#            Feature count
-            count = self.continuous[col].size;
-            feature.append(count);
-            
-#            Feature % Miss
-            miss_pourcentage = (self.continuous[col].isnull().sum()/self.continuous[col].size) * 100;
-            feature.append(miss_pourcentage);
-            
-#            Feature cardinality
-            cardinality = self.continuous[col].unique().size;
-            feature.append(cardinality);
-            
-#            Min value of the feature
-            min_value = np.min(self.continuous[col]);
-            feature.append(min_value);
-            
-#            1st quarter
-            first_quarter = self.continuous[col].quantile(0.25);
-            feature.append(first_quarter);
-            
-#            Feature mean
-            mean = np.round(np.mean(self.continuous[col]), decimals=2);  
-            feature.append(mean);
-            
-#            Feature median
-            median = self.continuous[col].quantile(0.5);
-            feature.append(median);
-            
-#            3rd quarter
-            third_quarter = self.continuous[col].quantile(0.75);
-            feature.append(third_quarter);
-            
-#            Feature max
-            max_value = np.max(self.continuous[col]);
-            feature.append(max_value);            
-            
-#            Feature standard deviation
-            std = np.round(np.std(self.continuous[col]), decimals=2);
-            feature.append(std);
-                
-            continuous_features_table.append(feature);
+            feature['nameFeature'] = cat;
+            feature['countTotal'] = dataFeature.size;
+            feature['% Miss'] = dataFeature.isnull().sum()/ dataFeature.size * 100;
+            feature['cardTotal'] = np.unique(dataFeature).size;
+            feature['min'] = np.min(dataFeature);
+            feature['firstQuarter'] = np.percentile(dataFeature, 25);
+            feature['mean'] = round(np.mean(dataFeature), 2);
+            feature['median'] = np.percentile(dataFeature, 50);
+            feature['thirdQuarter'] = np.percentile(dataFeature, 75);
+            feature['max'] = np.max(dataFeature);
+            feature['std'] = np.std(dataFeature);
+            self.__continuous_features_table.append(feature); 
             
 #        Write continuous table
         self.write_results();
-#        Write continuous features table
-        self.write_results(continuous_features_table, continuous_header, self.pathDQR);
- 
-
+#        Write DQR continuous
+        self.write_results(self.__continuous_features_table, self.__continuous_header, self.pathDQR);
 
 cont = Continuous();
-cont.draw_DQR();
+cont.draw_DQR()
