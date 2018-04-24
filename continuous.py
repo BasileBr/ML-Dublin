@@ -13,18 +13,18 @@ class Continuous:
             self.fileCSV = fileCSV
             
         self.continuous = self.fileCSV.select_dtypes(include=['integer'])
-        self.pathContinuousFeatures = './results/continuous_features.csv';
+        self.pathFeatures = './results/continuous_features.csv';
         self.pathDQR = './results/DQR_continuous.csv';
         
     def get_continuous(self):        
         if self.continuous is not None:
             return self.continuous
         else:
-            return pd.read_csv(filepath_or_buffer=self.pathContinuousFeatures)
+            return pd.read_csv(filepath_or_buffer=self.pathFeatures)
     
     def write_results(self, table=None, header_columns=None, path=None):
         if table is None and path is None:
-            pd.DataFrame(self.continuous).to_csv(path_or_buf=self.pathContinuousFeatures);
+            pd.DataFrame(self.continuous).to_csv(path_or_buf=self.pathFeatures);
         else:
             pd.DataFrame(table).to_csv(path_or_buf=path, header = header_columns, index = False);
         

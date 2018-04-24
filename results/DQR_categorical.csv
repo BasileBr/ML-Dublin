@@ -1,0 +1,11 @@
+Feature name,Count,% Miss,Card,Mode
+id,30940,0.0,30940,1
+workclass,30940,0.0,9,21576
+education,30940,0.0,16,9976
+marital-status,30940,0.0,7,14201
+occupation,30940,0.0,15,3932
+relationship,30940,0.0,6,12496
+race,30940,0.0,5,26442
+sex,30940,0.0,2,20705
+native-country,30940,0.0,42,27719
+target,30940,0.0,2,23506
