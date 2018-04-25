@@ -4,13 +4,13 @@ import collections
 
 class Continuous:
     
-    def __init__(self,fileCSV=None):
+    def __init__(self,fileCSV=None, headerLabels=None):
         
         if fileCSV is None:
             self.pathBank = './dataset/dataset.csv'
             self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=0);
         else:
-            self.fileCSV = pd.read_csv(filepath_or_buffer=fileCSV, delimiter = ',', header=0, index_col=0);
+            self.fileCSV = pd.read_csv(filepath_or_buffer=fileCSV, delimiter = ',', names= headerLabels, header=0, index_col=0);
         
         self.continuous = self.fileCSV.select_dtypes(include=[np.number])
         self.pathFeatures = './results/continuous-features.csv';

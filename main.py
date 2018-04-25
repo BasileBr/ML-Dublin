@@ -5,7 +5,12 @@ import view as v;
 
 def main():
     
-    continuous = cont.Continuous('./dataset/census-income.data.csv');
+    file = './dataset/census-income.data.csv';
+    header = ["AAGE","ACLSWKR","ADTIND","ADTOCC","AHGA","AHRSPAY","AHSCOL","AMARITL","AMJIND","AMJOCC","ASEX","AREORGN","AUNMEM","AUNTYPE","AWKSTAT","CAPGAIN","CAPLOSS","DIVVAL","FILESTAT","GRINREG","GRINST","HHDFMX","HHDREL","MIGMTR1","MIGMTR3","MIGMTR4","MIGSAME","MIGSUN","NOEMP","PARENT","PEFNTVTY","PEMNTVTY","PENATVTY","PRCITSHP","SEOTR","VETQVA","VETYN","WKSWORK"];
+        
+    
+    print(len(header))
+    continuous = cont.Continuous(file, header);
     continuous.draw_DQR();
 
 #    categorical = cat.Categorical('./dataset/census-income.data.csv');    
