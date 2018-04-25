@@ -9,13 +9,13 @@ class Categorical:
     def __init__(self,fileCSV=None):
         
         if fileCSV is None:
-            self.pathFeatures = './dataset/dataset.csv'
-            self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathFeatures,delimiter = ',', header=0, index_col=1)
+            self.pathBank = './dataset/dataset.csv'
+            self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=1)
         else:
             self.fileCSV = fileCSV;
             
         self.categorical = self.fileCSV.select_dtypes(exclude=[np.number]);
-        self.pathFileResult = './results/categorical-features.csv';
+        self.pathFeatures = './results/categorical-features.csv';
         self.pathDQR = './results/E-DQR-categorical.csv';
         self.__categorical_features_table = [];
     
@@ -51,7 +51,7 @@ class Categorical:
 
             for index in dataFeature:
                 if "?" in index:
-#                    print(countWrongItem, " = NB of ?");   
+#                   print(countWrongItem, " = NB of ?");   
                     countWrongItem = countWrongItem + 1 
                     
 #           Put in the table feature the name of the feature

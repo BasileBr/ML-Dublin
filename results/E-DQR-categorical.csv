@@ -1,5 +1,6 @@
 Feature name,Count,% Miss,Card,Mode,Mode Freq,Mode %,2nd Mode,2nd Mode Freq,2nd Mode %
-id,30940,0.0,30940,tr2838,1,0.0,tr11325,1,0.0
+id,30940,0.0,30940,tr15220,1,0.0,tr23622,1,0.0
+workclass,30940,5.607627666451196,9, Private,21576,69.73, Self-emp-not-inc,2406,7.78
 education,30940,0.0,16, HS-grad,9976,32.24, Some-college,6938,22.42
 marital-status,30940,0.0,7, Married-civ-spouse,14201,45.9, Never-married,10167,32.86
 occupation,30940,5.630252100840337,15, Prof-specialty,3932,12.71, Craft-repair,3887,12.56
