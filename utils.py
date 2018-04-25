@@ -54,7 +54,3 @@ def getHeader():
             'VETYN': 'veterans benefits',
             'WKSWORK': 'weeks worked in year'
         }
-    
-    
-my_dict = getHeader();
-print(my_dict['TAXINC']);

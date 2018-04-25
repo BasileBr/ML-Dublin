@@ -12,7 +12,7 @@ class Categorical:
             self.pathBank = './dataset/dataset.csv'
             self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=1)
         else:
-            self.fileCSV = fileCSV;
+            self.fileCSV = pd.read_csv(filepath_or_buffer=fileCSV,delimiter = ',', header=0, index_col=0);
             
         self.categorical = self.fileCSV.select_dtypes(exclude=[np.number]);
         self.pathFeatures = './results/categorical-features.csv';

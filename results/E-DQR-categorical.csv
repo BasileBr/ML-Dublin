@@ -1,11 +1,30 @@
 Feature name,Count,% Miss,Card,Mode,Mode Freq,Mode %,2nd Mode,2nd Mode Freq,2nd Mode %
-id,30940,0.0,30940,tr15220,1,0.0,tr23622,1,0.0
-workclass,30940,5.607627666451196,9, Private,21576,69.73, Self-emp-not-inc,2406,7.78
-education,30940,0.0,16, HS-grad,9976,32.24, Some-college,6938,22.42
-marital-status,30940,0.0,7, Married-civ-spouse,14201,45.9, Never-married,10167,32.86
-occupation,30940,5.630252100840337,15, Prof-specialty,3932,12.71, Craft-repair,3887,12.56
-relationship,30940,0.0,6, Husband,12496,40.39, Not-in-family,7904,25.55
-race,30940,0.0,5, White,26442,85.46, Black,2965,9.58
-sex,30940,0.0,2, Male,20705,66.92, Female,10235,33.08
-native-country,30940,1.7905623787976728,42, United-States,27719,89.59, Mexico,607,1.96
-target,30940,0.0,2, <=50K,23506,75.97, >50K,7434,24.03
+ Not in universe,199478,0.0,9, Not in universe,100224,50.24, Private,72011,36.1
+ High school graduate,199478,0.0,17, High school graduate,48397,24.26, Children,47411,23.77
+ Not in universe.1,199478,0.0,3, Not in universe,186900,93.69, High school,6890,3.45
+ Married-civilian spouse present,199478,0.0,7, Never married,86465,43.35, Married-civilian spouse present,84202,42.21
+ Not in universe or children,199478,0.0,24, Not in universe or children,100663,50.46, Retail trade,17069,8.56
+ Not in universe.2,199478,0.0,15, Not in universe,100663,50.46, Adm support including clerical,14833,7.44
+ White,199478,0.0,5, White,167330,83.88, Black,20411,10.23
+ All other,199478,0.0,10, All other,171873,86.16, Mexican-American,8075,4.05
+ Female,199478,0.0,2, Female,103956,52.11, Male,95522,47.89
+ Not in universe.3,199478,0.0,3, Not in universe,180417,90.44, No,16031,8.04
+ Not in universe.4,199478,0.0,6, Not in universe,193410,96.96, Other job loser,2038,1.02
+ Not in labor force,199478,0.0,8, Children or Armed Forces,123740,62.03, Full-time schedules,40729,20.42
+ Joint both 65+,199478,0.0,6, Nonfiler,75078,37.64, Joint both under 65,67365,33.77
+ Not in universe.5,199478,0.0,6, Not in universe,183709,92.09, South,4887,2.45
+ Not in universe.6,199478,0.3549263577938419,51, Not in universe,183709,92.09, California,1714,0.86
+ Spouse of householder,199478,0.0,38, Householder,53233,26.69, Child <18 never marr not in subfamily,50315,25.22
+ Spouse of householder.1,199478,0.0,8, Householder,75457,37.83, Child under 18 never married,50415,25.27
+ ?,199478,49.96942018668725,10, ?,99678,49.97, Nonmover,82515,41.37
+ ?.1,199478,49.96942018668725,9, ?,99678,49.97, Nonmover,82515,41.37
+ ?.2,199478,49.96942018668725,10, ?,99678,49.97, Nonmover,82515,41.37
+ Not in universe under 1 year old,199478,0.0,3, Not in universe under 1 year old,101194,50.73, Yes,82515,41.37
+ ?.3,199478,49.96942018668725,4, ?,99678,49.97, Not in universe,84031,42.13
+ Not in universe.7,199478,0.0,5, Not in universe,144199,72.29, Both parents present,38974,19.54
+ United-States,199478,3.3637794644020897,43, United-States,159132,79.77, Mexico,10004,5.02
+ United-States.1,199478,3.0665035743289986,43, United-States,160445,80.43, Mexico,9777,4.9
+ United-States.2,199478,1.7004381435546778,43, United-States,176951,88.71, Mexico,5764,2.89
+ Native- Born in the United States,199478,0.0,5, Native- Born in the United States,176954,88.71, Foreign born- Not a citizen of U S ,13394,6.71
+ Not in universe.8,199478,0.0,3, Not in universe,197494,99.01, No,1593,0.8
+ - 50000.,199478,0.0,2, - 50000.,187096,93.79, 50000+.,12382,6.21

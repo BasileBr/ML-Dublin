@@ -8,9 +8,10 @@ class Continuous:
         
         if fileCSV is None:
             self.pathBank = './dataset/dataset.csv'
-            self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=0)
+            self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=0);
         else:
-            self.fileCSV = fileCSV;
+            self.fileCSV = pd.read_csv(filepath_or_buffer=fileCSV, delimiter = ',', header=0, index_col=0);
+        
         self.continuous = self.fileCSV.select_dtypes(include=[np.number])
         self.pathFeatures = './results/continuous-features.csv';
         self.pathDQR = './results/E-DQR-continuous.csv';
@@ -32,23 +33,14 @@ class Continuous:
         self.__continuous_features_table = [];
         self.__continuous_header = ["Feature name","Count","% Miss", "Card", "Min", "1st Qrt", "Mean","Median","3rd Qrt","Max", "Standard deviation" ]
         continuous_columns = self.get_continuous();
-        print(continuous_columns)
+        
         for cat in continuous_columns:
             dataFeature = self.fileCSV[cat];
             feature = collections.OrderedDict();
-            print(dataFeature)
-            
-#            We don't have the time to implement the miss percentage
-#            countWrongItem = 0;
-#            for index in dataFeature:
-#                if "?" == index:
-#                    print(countWrongItem, " = NB of ?");   
-#                    countWrongItem = countWrongItem + 1 
-#            print(countWrongItem)
             
             feature['nameFeature'] = cat;
             feature['countTotal'] = dataFeature.size;                  
-            feature['% Miss'] = dataFeature.isnull().sum()/ dataFeature.size * 100;
+            feature['% Miss'] = dataFeature.isnull().sum() / dataFeature.size * 100;
             feature['cardTotal'] = np.unique(dataFeature).size;
             feature['min'] = np.min(dataFeature);
             feature['firstQuarter'] = np.percentile(dataFeature, 25);
@@ -57,7 +49,6 @@ class Continuous:
             feature['thirdQuarter'] = np.percentile(dataFeature, 75);
             feature['max'] = np.max(dataFeature);
             feature['std'] = np.std(dataFeature);
-            print(feature,"feature")
             self.__continuous_features_table.append(feature);
             
 #        Write continuous table
