@@ -8,7 +8,7 @@ class Continuous:
         
         if fileCSV is None:
             self.pathBank = './dataset/dataset.csv'
-            self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=1)
+            self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=0)
         else:
             self.fileCSV = fileCSV
             
@@ -58,5 +58,5 @@ class Continuous:
 #        Write DQR continuous
         self.write_results(self.__continuous_features_table, self.__continuous_header, self.pathDQR);
 
-cont = Continuous();
-cont.draw_DQR()
+#cont = Continuous();
+#cont.draw_DQR()

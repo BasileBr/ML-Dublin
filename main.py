@@ -1,11 +1,17 @@
-
+import continuous as cont;
+import categorical as cat;
+import view as v;
 
 def main():
-    continuous = Continuous();
-    categorical = Categorical();
-    
-    continuous.draw_DQR();
+    #continuous = cont.Continuous();
+    #continuous.draw_DQR();
+
+    categorical = cat.Categorical();    
     categorical.draw_DQR();
+    
+    #view = v.View();
+    #view.draw_features();
+    print("Finished");
 
 main()
     
