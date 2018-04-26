@@ -64,7 +64,7 @@ class Continuous:
               
 #        Write DQR continuous
         self.write_results(self.__continuous_features_table, self.__continuous_header, self.pathDQR);
-        self.write_results(self.__all_continuous_table, self.__all_continous_header,"./results/data-result.csv");
+        self.write_results(self.__all_continuous_table, self.__all_continous_header,"./results/continuous-features.csv");
 
 #cont = Continuous();
 #cont.draw_DQR()
