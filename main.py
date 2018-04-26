@@ -16,9 +16,9 @@ def main():
     continuous.draw_DQR();
 
 
-    categorical = cat.CategoricalV2(file);
+    categorical = cat.Categorical(file);
     categorical.draw_DQR();
-    
+#    
     utils = u.Utils();
     
     utils.graph_continuous();

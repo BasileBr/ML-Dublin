@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import collections
 
-class CategoricalV2:
+class Categorical:
     
     def __init__(self,fileCSV=None, headerLabels=None):
         
@@ -28,22 +28,22 @@ class CategoricalV2:
 
     
     def draw_DQR(self):
-        print("here")
+
         self.__all_categorical_header = [];
         self.__continuous_features_table = [];
         self.__categorical_header = ["Feature name","Count","% Miss", "Card", "Mode", "Mode Freq", "Mode %","2nd Mode","2nd Mode Freq","2nd Mode %"]
         continuous_columns = self.categorical;
         self.__all_categorical_table = collections.OrderedDict();
         for col, cat in enumerate(continuous_columns.keys()):
-            print(col, cat)
+
             dataFeature = self.fileCSV[cat];
             hasInt = False;
             countWrongItem = 0;
 
             for value in dataFeature:
                 if type(value) is int:
-                    print(value)
                     hasInt = True
+
                 elif "Not in universe" in value:
                     countWrongItem = countWrongItem + 1 
             if hasInt is False :

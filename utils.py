@@ -79,9 +79,9 @@ class Utils:
                  ply.offline.plot({
                          "data": [ply.graph_objs.Histogram(x=data_continuous[feature])],
                          "layout": ply.graph_objs.Layout(
-                                 title="Histogram of feature :" + feature + " for cardinality >=10"
+                                 title="Histogram of feature : '" + feature + "' for cardinality >=10"
                                  )
-                 }, filename="./results/%s.html" %feature)
+                 }, filename="./results/graphs/%s.html" %feature)
                          
             else:
                 tab_value = Counter(data_continuous[feature])
@@ -100,9 +100,9 @@ class Utils:
                 ply.offline.plot({
                         "data": [ply.graph_objs.Bar(x=kley, y=val)],
                         "layout": ply.graph_objs.Layout(
-                                    title="Bar plot for feature :" + feature + "for cardinality <10"
+                                    title="Bar plot for feature : '" + feature + "' for cardinality <10"
                                 )
-                }, filename="./results/%s.html" % feature)
+                }, filename="./results/graphs/%s.html" % feature)
                         
     def graph_categorical(self):
             
@@ -132,7 +132,7 @@ class Utils:
                                     )
                             ],
                     "layout": ply.graph_objs.Layout(
-                            title="Bar plot for feature :" + feature + "for categorical"
+                            title="Bar plot for feature : '" + feature + "' for categorical"
                             )
-                    }, filename="./results/%s.html" % feature)
+                    }, filename="./results/graphs/%s.html" % feature)
         
