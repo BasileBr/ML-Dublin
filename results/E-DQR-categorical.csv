@@ -1,30 +1,30 @@
 Feature name,Count,% Miss,Card,Mode,Mode Freq,Mode %,2nd Mode,2nd Mode Freq,2nd Mode %
- Not in universe,199478,0.0,9, Not in universe,100224,50.24, Private,72011,36.1
- High school graduate,199478,0.0,17, High school graduate,48397,24.26, Children,47411,23.77
- Not in universe.1,199478,0.0,3, Not in universe,186900,93.69, High school,6890,3.45
- Married-civilian spouse present,199478,0.0,7, Never married,86465,43.35, Married-civilian spouse present,84202,42.21
- Not in universe or children,199478,0.0,24, Not in universe or children,100663,50.46, Retail trade,17069,8.56
- Not in universe.2,199478,0.0,15, Not in universe,100663,50.46, Adm support including clerical,14833,7.44
- White,199478,0.0,5, White,167330,83.88, Black,20411,10.23
- All other,199478,0.0,10, All other,171873,86.16, Mexican-American,8075,4.05
- Female,199478,0.0,2, Female,103956,52.11, Male,95522,47.89
- Not in universe.3,199478,0.0,3, Not in universe,180417,90.44, No,16031,8.04
- Not in universe.4,199478,0.0,6, Not in universe,193410,96.96, Other job loser,2038,1.02
- Not in labor force,199478,0.0,8, Children or Armed Forces,123740,62.03, Full-time schedules,40729,20.42
- Joint both 65+,199478,0.0,6, Nonfiler,75078,37.64, Joint both under 65,67365,33.77
- Not in universe.5,199478,0.0,6, Not in universe,183709,92.09, South,4887,2.45
- Not in universe.6,199478,0.3549263577938419,51, Not in universe,183709,92.09, California,1714,0.86
- Spouse of householder,199478,0.0,38, Householder,53233,26.69, Child <18 never marr not in subfamily,50315,25.22
- Spouse of householder.1,199478,0.0,8, Householder,75457,37.83, Child under 18 never married,50415,25.27
- ?,199478,49.96942018668725,10, ?,99678,49.97, Nonmover,82515,41.37
- ?.1,199478,49.96942018668725,9, ?,99678,49.97, Nonmover,82515,41.37
- ?.2,199478,49.96942018668725,10, ?,99678,49.97, Nonmover,82515,41.37
- Not in universe under 1 year old,199478,0.0,3, Not in universe under 1 year old,101194,50.73, Yes,82515,41.37
- ?.3,199478,49.96942018668725,4, ?,99678,49.97, Not in universe,84031,42.13
- Not in universe.7,199478,0.0,5, Not in universe,144199,72.29, Both parents present,38974,19.54
- United-States,199478,3.3637794644020897,43, United-States,159132,79.77, Mexico,10004,5.02
- United-States.1,199478,3.0665035743289986,43, United-States,160445,80.43, Mexico,9777,4.9
- United-States.2,199478,1.7004381435546778,43, United-States,176951,88.71, Mexico,5764,2.89
- Native- Born in the United States,199478,0.0,5, Native- Born in the United States,176954,88.71, Foreign born- Not a citizen of U S ,13394,6.71
- Not in universe.8,199478,0.0,3, Not in universe,197494,99.01, No,1593,0.8
- - 50000.,199478,0.0,2, - 50000.,187096,93.79, 50000+.,12382,6.21
+Class of worker,199478,50.243134581257074,9, Private,72011,36.1, Self-employed-not incorporated,8441,4.23
+education,199478,0.0,17, High school graduate,48397,24.26, Children,47411,23.77
+unroll in edu inst last week,199478,93.69454275659471,3, High school,6890,3.45, College or university,5688,2.85
+marital status,199478,0.0,7, Never married,86465,43.35, Married-civilian spouse present,84202,42.21
+major industry code,199478,50.463208975425864,24, Retail trade,17069,8.56, Manufacturing-durable goods,9014,4.52
+major occupation code,199478,50.463208975425864,15, Adm support including clerical,14833,7.44, Professional specialty,13936,6.99
+race,199478,0.0,5, White,167330,83.88, Black,20411,10.23
+hispanic origin,199478,0.0,10, All other,171873,86.16, Mexican-American,8075,4.05
+sex,199478,0.0,2, Female,103956,52.11, Male,95522,47.89
+member of a labor union,199478,90.44456030238923,3, No,16031,8.04, Yes,3030,1.52
+reason for unemployment,199478,96.95806053800419,6, Other job loser,2038,1.02, Re-entrant,2019,1.01
+full or part time employment stat,199478,0.0,8, Children or Armed Forces,123740,62.03, Full-time schedules,40729,20.42
+tax filter stat,199478,0.0,6, Nonfiler,75078,37.64, Joint both under 65,67365,33.77
+region of previous residence,199478,92.0948676044476,6, South,4887,2.45, West,4074,2.04
+state of previous residence,199478,92.0948676044476,51, California,1714,0.86, Utah,1062,0.53
+detailed household and family stat,199478,0.0,38, Householder,53233,26.69, Child <18 never marr not in subfamily,50315,25.22
+detailed household summary in household,199478,0.0,8, Householder,75457,37.83, Child under 18 never married,50415,25.27
+migration code-change in REG,199478,0.7599835570839892,10, Nonmover,82515,41.37, MSA to MSA,10597,5.31
+migration code-change within REQ,199478,0.7599835570839892,9, Nonmover,82515,41.37, Same county,9810,4.92
+live in this house 1 year ago,199478,0.7599835570839892,10, Nonmover,82515,41.37, Same county,9810,4.92
+migration prev res in sunbelt,199478,50.72940374377124,3, Yes,82515,41.37, No,15769,7.91
+num person work for employer,199478,42.125447417760356,4, No,9985,5.01, Yes,5784,2.9
+country of birth father,199478,72.28817212925736,5, Both parents present,38974,19.54, Mother only present,12770,6.4
+country of birth mother,199478,0.0,43, United-States,159132,79.77, Mexico,10004,5.02
+country of birth self,199478,0.0,43, United-States,160445,80.43, Mexico,9777,4.9
+citizenship,199478,0.0,43, United-States,176951,88.71, Mexico,5764,2.89
+own business or self employed,199478,0.0,5, Native- Born in the United States,176954,88.71, Foreign born- Not a citizen of U S ,13394,6.71
+veteran's benefits,199478,99.0054041047133,3, No,1593,0.8, Yes,391,0.2
+Detailed industry recode.1,199478,0.0,2, - 50000.,187096,93.79, 50000+.,12382,6.21

@@ -51,7 +51,6 @@ class Categorical:
 
             for index in dataFeature:
                 if "?" in index:
-#                   print(countWrongItem, " = NB of ?");   
                     countWrongItem = countWrongItem + 1 
                     
 #           Put in the table feature the name of the feature
