@@ -48,35 +48,36 @@ class Categorical:
                     countWrongItem = countWrongItem + 1 
             if hasInt is False :
                 
-                feature = collections.OrderedDict();
-#           Put in the table feature the name of the feature
-                feature['nameFeature'] = cat
-#           Put in the table feature the total count of lines
-                feature['countTotal'] = dataFeature.size
-                feature['% Miss'] = countWrongItem/ dataFeature.size * 100
-                feature['cardTotal'] = np.unique(dataFeature).size
-        
-#           check 
-                iFirstMode= 0;
-                while("Not in universe" in dataFeature.value_counts().keys()[iFirstMode] or "?" in dataFeature.value_counts().keys()[iFirstMode]):
-                    iFirstMode = iFirstMode + 1
+                if countWrongItem/ dataFeature.size * 100 < 60:
+                    feature = collections.OrderedDict();
+    #           Put in the table feature the name of the feature
+                    feature['nameFeature'] = cat
+    #           Put in the table feature the total count of lines
+                    feature['countTotal'] = dataFeature.size
+                    feature['% Miss'] = countWrongItem/ dataFeature.size * 100
+                    feature['cardTotal'] = np.unique(dataFeature).size
             
-                iSecondMode= iFirstMode + 1;
-                while("Not in universe" in dataFeature.value_counts().keys()[iSecondMode] or "?" in dataFeature.value_counts().keys()[iSecondMode]):
-                    iSecondMode = iSecondMode + 1
+    #           check 
+                    iFirstMode= 0;
+                    while("Not in universe" in dataFeature.value_counts().keys()[iFirstMode] or "?" in dataFeature.value_counts().keys()[iFirstMode]):
+                        iFirstMode = iFirstMode + 1
+                
+                    iSecondMode= iFirstMode + 1;
+                    while("Not in universe" in dataFeature.value_counts().keys()[iSecondMode] or "?" in dataFeature.value_counts().keys()[iSecondMode]):
+                        iSecondMode = iSecondMode + 1
+                        
+                    feature['First Mode'] = dataFeature.value_counts().keys()[iFirstMode]
+                    feature['First Mode Freq'] = dataFeature.value_counts()[iFirstMode]
+                    feature['First Mode %'] = round(dataFeature.value_counts()[iFirstMode] / dataFeature.size * 100,2)
                     
-                feature['First Mode'] = dataFeature.value_counts().keys()[iFirstMode]
-                feature['First Mode Freq'] = dataFeature.value_counts()[iFirstMode]
-                feature['First Mode %'] = round(dataFeature.value_counts()[iFirstMode] / dataFeature.size * 100,2)
-                
-                feature['Second Mode'] = dataFeature.value_counts().keys()[iSecondMode]
-                feature['Second Mode Freq'] = dataFeature.value_counts()[iSecondMode]
-                feature['Second Mode %'] = round(dataFeature.value_counts()[iSecondMode] / dataFeature.size * 100,2)
-                self.__continuous_features_table.append(feature);
-                
-                self.__all_categorical_header.append(cat);
-                self.__all_categorical_table[cat] = continuous_columns.values[:,col];
-              
+                    feature['Second Mode'] = dataFeature.value_counts().keys()[iSecondMode]
+                    feature['Second Mode Freq'] = dataFeature.value_counts()[iSecondMode]
+                    feature['Second Mode %'] = round(dataFeature.value_counts()[iSecondMode] / dataFeature.size * 100,2)
+                    self.__continuous_features_table.append(feature);
+                    
+                    self.__all_categorical_header.append(cat);
+                    self.__all_categorical_table[cat] = continuous_columns.values[:,col];
+                  
 #        Write DQR continuous
         self.write_results(self.__continuous_features_table, self.__categorical_header, self.pathDQR);
         self.write_results(self.__all_categorical_table, self.__all_categorical_header,"./results/categorical-features.csv");

@@ -19,10 +19,10 @@ def main():
     categorical = cat.Categorical(file);
     categorical.draw_DQR();
 #    
-    utils = u.Utils();
-    
-    utils.graph_continuous();
-    utils.graph_categorical();
+#    utils = u.Utils();
+#    
+#    utils.graph_continuous();
+#    utils.graph_categorical();
 
     print("Finished");
 

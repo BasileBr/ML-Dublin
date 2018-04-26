@@ -49,22 +49,23 @@ class Continuous:
             
             if hasString is False :
                 
-                feature = collections.OrderedDict();
-                feature['nameFeature'] = cat;
-                feature['countTotal'] = dataFeature.size;                  
-                feature['% Miss'] = countWrongItem / dataFeature.size * 100;
-                feature['cardTotal'] = np.unique(dataFeature).size;
-                feature['min'] = np.min(dataFeature);
-                feature['firstQuarter'] = np.percentile(dataFeature, 25);
-                feature['mean'] = round(np.mean(dataFeature), 2);
-                feature['median'] = np.percentile(dataFeature, 50);
-                feature['thirdQuarter'] = np.percentile(dataFeature, 75);
-                feature['max'] = np.max(dataFeature);
-                feature['std'] = np.std(dataFeature);
-                self.__continuous_features_table.append(feature);
-                
-                self.__all_continous_header.append(cat);
-                self.__all_continuous_table[cat] = continuous_columns.values[:,col];
+                if countWrongItem/ dataFeature.size * 100 < 60:
+                    feature = collections.OrderedDict();
+                    feature['nameFeature'] = cat;
+                    feature['countTotal'] = dataFeature.size;                  
+                    feature['% Miss'] = countWrongItem / dataFeature.size * 100;
+                    feature['cardTotal'] = np.unique(dataFeature).size;
+                    feature['min'] = np.min(dataFeature);
+                    feature['firstQuarter'] = np.percentile(dataFeature, 25);
+                    feature['mean'] = round(np.mean(dataFeature), 2);
+                    feature['median'] = np.percentile(dataFeature, 50);
+                    feature['thirdQuarter'] = np.percentile(dataFeature, 75);
+                    feature['max'] = np.max(dataFeature);
+                    feature['std'] = np.std(dataFeature);
+                    self.__continuous_features_table.append(feature);
+                    
+                    self.__all_continous_header.append(cat);
+                    self.__all_continuous_table[cat] = continuous_columns.values[:,col];
               
 #        Write DQR continuous
         self.write_results(self.__continuous_features_table, self.__continuous_header, self.pathDQR);
