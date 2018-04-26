@@ -10,7 +10,7 @@ class Continuous:
             self.pathBank = './dataset/dataset.csv'
             self.fileCSV = pd.read_csv(filepath_or_buffer=self.pathBank,delimiter = ',', header=0, index_col=0);
         else:
-            self.fileCSV = pd.read_csv(filepath_or_buffer=fileCSV, delimiter = ',', header=0, names= headerLabels);
+            self.fileCSV = pd.read_csv(filepath_or_buffer=fileCSV, delimiter = ';', header=0, names= headerLabels);
        
         self.continuous = self.fileCSV.select_dtypes(include=[np.number]);
         self.pathFeatures = './results/continuous-features.csv';
@@ -34,21 +34,25 @@ class Continuous:
         self.__continuous_header = ["Feature name","Count","% Miss", "Card", "Min", "1st Qrt", "Mean","Median","3rd Qrt","Max", "Standard deviation" ]
         continuous_columns = self.continuous;
         self.__all_continuous_table = collections.OrderedDict();
+        tabExcludeCat = ['detailed occupation recode','detailed industry recode','own business or self employed','veteran\'s benefits'];
         for col, cat in enumerate(continuous_columns.keys()):
-            print(col, cat)
+
             dataFeature = self.fileCSV[cat];
             hasString = False;
+            countWrongItem = 0;
 
             for value in dataFeature:
                 if type(value) is not int:
                     hasString = True;
+                elif value == 0 and cat not in tabExcludeCat:
+                    countWrongItem = countWrongItem+1;
             
             if hasString is False :
                 
                 feature = collections.OrderedDict();
                 feature['nameFeature'] = cat;
                 feature['countTotal'] = dataFeature.size;                  
-                feature['% Miss'] = dataFeature.isnull().sum() / dataFeature.size * 100;
+                feature['% Miss'] = countWrongItem / dataFeature.size * 100;
                 feature['cardTotal'] = np.unique(dataFeature).size;
                 feature['min'] = np.min(dataFeature);
                 feature['firstQuarter'] = np.percentile(dataFeature, 25);
