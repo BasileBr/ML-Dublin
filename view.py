@@ -38,7 +38,7 @@ class View:
                 val = []
                 kley = []
                 for cle, valeur in tab_value.items():
-                    print("La clé {} contient la valeur {}.".format(cle, valeur))
+#                    print("La clé {} contient la valeur {}.".format(cle, valeur))
                     val.append(valeur)
                     kley.append(cle)
                 print(cle,valeur)
