@@ -45,30 +45,27 @@ class Continuous:
                     countWrongItem = countWrongItem+1;
             
             if hasString is False:
-                #if np.max(dataFeature) - np.percentile(dataFeature, 75) >  np.percentile(dataFeature, 75) - np.percentile(dataFeature, 50):
-                #    print(np.max(dataFeature) - np.percentile(dataFeature, 75) >  np.percentile(dataFeature, 75) - np.percentile(dataFeature, 50))
-                #    if np.percentile(dataFeature, 25) - np.min(dataFeature) >  np.percentile(dataFeature, 25) - np.percentile(dataFeature, 50):
-                #        print(np.percentile(dataFeature, 25) - np.min(dataFeature))
-                #        print(np.percentile(dataFeature, 25) - np.percentile(dataFeature, 50))
-                        if abs(round(np.mean(dataFeature), 2)) -  abs(np.percentile(dataFeature, 50)) < 2:
-                            print("OK - little difference between mean and mediant (> 2)")
-                            if countWrongItem/ dataFeature.size * 100 < 60:
-                                feature = collections.OrderedDict();
-                                feature['nameFeature'] = cat;
-                                feature['countTotal'] = dataFeature.size;                  
-                                feature['% Miss'] = countWrongItem / dataFeature.size * 100;
-                                feature['cardTotal'] = np.unique(dataFeature).size;
-                                feature['min'] = np.min(dataFeature);
-                                feature['firstQuarter'] = np.percentile(dataFeature, 25);
-                                feature['mean'] = round(np.mean(dataFeature), 2);
-                                feature['median'] = np.percentile(dataFeature, 50);
-                                feature['thirdQuarter'] = np.percentile(dataFeature, 75);
-                                feature['max'] = np.max(dataFeature);
-                                feature['std'] = np.std(dataFeature);
-                                self.__continuous_features_table.append(feature);
-                                
-                                self.__all_continous_header.append(cat);
-                                self.__all_continuous_table[cat] = continuous_columns.values[:,col];
+                
+#                if  (np.max(dataFeature) - np.percentile(dataFeature, 75) >  np.percentile(dataFeature, 75) - np.percentile(dataFeature, 50)) or
+#                    (np.percentile(dataFeature, 25) - np.min(dataFeature) >  np.percentile(dataFeature, 25) - np.percentile(dataFeature, 50)):
+#                   
+                if countWrongItem/ dataFeature.size * 100 < 60:
+                    feature = collections.OrderedDict();
+                    feature['nameFeature'] = cat;
+                    feature['countTotal'] = dataFeature.size;                  
+                    feature['% Miss'] = countWrongItem / dataFeature.size * 100;
+                    feature['cardTotal'] = np.unique(dataFeature).size;
+                    feature['min'] = np.min(dataFeature);
+                    feature['firstQuarter'] = np.percentile(dataFeature, 25);
+                    feature['mean'] = round(np.mean(dataFeature), 2);
+                    feature['median'] = np.percentile(dataFeature, 50);
+                    feature['thirdQuarter'] = np.percentile(dataFeature, 75);
+                    feature['max'] = np.max(dataFeature);
+                    feature['std'] = np.std(dataFeature);
+                    self.__continuous_features_table.append(feature);
+                    
+                    self.__all_continous_header.append(cat);
+                    self.__all_continuous_table[cat] = continuous_columns.values[:,col];
               
 #        Write DQR continuous
         self.write_results(self.__continuous_features_table, self.__continuous_header, self.pathDQR);
