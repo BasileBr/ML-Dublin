@@ -45,8 +45,6 @@ def main():
     #   OUR PROGRAM AND WE ARE NOT ABLE TO UNDERSTAND #
     #   HOW TO USE THE SCIKIT LIBRARY                 #
     ###################################################
-    ##### ##### ##  PREPARING DATA  ## ##### ##### 
-    ##############################################
     
     # Get bank
     bank = pd.read_csv(file,delimiter = ';')
@@ -56,34 +54,19 @@ def main():
     target = 'income'
     # Extract target feature
     training_target = bank[target]
-    
-    ########################
-    #### Training bank ####
-    ######################
-    
+        
     # Training bank means that we only have a little part of data set
     training_bank = bank.sample(4000)
-    
-    ##################
-    ## Testing bank ##
-    ##################
     
     # Droping training bank from whole bank
     testing_bank = bank.drop(training_bank.index)
     
-    ##############################
-    ##      Extracting values   ##
-    ## Categorical / Continuous ##
-    ##############################
-    
-    #####  Continuous  #####
     # Column names of continuous features #
     #numeric_cfs =  list(bank.select_dtypes(include=[np.number]).columns)
     numeric_cfs = ['age','detailed industry recode','detailed occupation recode','num person work for employer','own business or self employed','veteran\'s benefits','weeks work in year','year']
     # Data features #
     numeric_dfs = bank[numeric_cfs]
     
-    #####  Categorical  #####
     # Extract Categorical Descriptive Features
     cat_dfs = bank.drop(numeric_cfs + [target],axis=1)
     
@@ -96,17 +79,11 @@ def main():
     # Merge Categorical and Numeric Descriptive Features
     train_dfs = np.hstack((numeric_dfs.as_matrix(), vec_cat_dfs ))
     
-    ##---------------------------------------------------------------
-    ##   Create and train a decision tree model using sklearn api
-    ##---------------------------------------------------------------
     #create an instance of a decision tree model.
-    decTreeModel = tree.DecisionTreeClassifier(criterion='entropy', max_depth=10)
+    decTreeModel = tree.DecisionTreeClassifier(criterion='entropy', max_depth=20)
     #fit the model using the numeric representations of the training data
     decTreeModel.fit(train_dfs, training_target)
     data_dot = tree.export_graphviz(decTreeModel,out_file='./tree.dot')
-    #---------------------------------------------------------------
-    #   Define 2 Queries, Make Predictions, Map Predictions to Levels
-    #---------------------------------------------------------------
     
     q = {}
     for column in bank:
@@ -140,16 +117,28 @@ def main():
     predictions = decTreeModel.predict(train_dfs)
     accuracy = accuracy_score(training_target, predictions, normalize=True)
     
-    #--------------------------------------------
-    # Hold-out Test Set + Confusion Matrix
-    #--------------------------------------------
     print("Accuracy and Confusion Matrix on Hold-out Testset")
     
     #Split the data: 67% training : 33% test set
     instances_train, instances_test, target_train, target_test = model_selection.train_test_split(train_dfs, training_target, test_size=0.33, random_state=0)
     #
     #define a decision tree model using entropy based information gain
-#    clf = tree.DecisionTreeClassifier()
+    clf = tree.DecisionTreeClassifier(criterion='entropy',max_depth=20)
+#    
+    #fit the model using just the test set
+    clf.fit(instances_train, target_train)
+    #Use the model to make predictions for the test set queries
+    predictions = clf.predict(instances_test)
+    #Output the accuracy score of the model on the test set
+    print("Accuracy = " + str(accuracy_score(target_test, predictions)))
+    #Output the confusion matrix on the test set
+    confusionMatrix = confusion_matrix(target_test, predictions)
+    print("Confisious " , confusionMatrix)
+    print("\n\n")
+    
+#    print("KNN")
+#    #define a decision tree model using entropy based information gain
+#    clf = tree.KNeighborsClassifier(n_neighbors=50)
 #    
 #    #fit the model using just the test set
 #    clf.fit(instances_train, target_train)
@@ -161,21 +150,6 @@ def main():
 #    confusionMatrix = confusion_matrix(target_test, predictions)
 #    print("Confisious " , confusionMatrix)
 #    print("\n\n")
-    
-    print("KNN")
-    #define a decision tree model using entropy based information gain
-    clf = tree.KNeighborsClassifier(n_neighbors=50)
-    
-    #fit the model using just the test set
-    clf.fit(instances_train, target_train)
-    #Use the model to make predictions for the test set queries
-    predictions = clf.predict(instances_test)
-    #Output the accuracy score of the model on the test set
-    print("Accuracy = " + str(accuracy_score(target_test, predictions)))
-    #Output the confusion matrix on the test set
-    confusionMatrix = confusion_matrix(target_test, predictions)
-    print("Confisious " , confusionMatrix)
-    print("\n\n")
     
     #
     #print("Support vector classification")
