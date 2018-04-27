@@ -1,14 +1,6 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Apr 23 20:43:12 2018
-
-@author: Basile Bruhat
-"""
 from collections import Counter
-
 import pandas as pd
 import plotly as ply
-
 
 class Utils:
     
@@ -73,7 +65,14 @@ class Utils:
         
         for i in range(0,size[0]):
             feature = data["Feature name"][i]
-            
+                
+            ply.offline.plot({
+                "data": [ply.graph_objs.Box(x=data_continuous[feature])],
+                "layout": ply.graph_objs.Layout(
+                            title="Box plot for feature : '" + feature + "' to check outliers "
+                        )
+            }, filename="./results/graphs/%s.html" %feature+ "possible_out")
+                                    
             if data["Card"][i] >=10:
 
                  ply.offline.plot({

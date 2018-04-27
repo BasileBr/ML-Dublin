@@ -81,6 +81,3 @@ class Categorical:
 #        Write DQR continuous
         self.write_results(self.__continuous_features_table, self.__categorical_header, self.pathDQR);
         self.write_results(self.__all_categorical_table, self.__all_categorical_header,"./results/categorical-features.csv");
-
-#cont = Continuous();
-#cont.draw_DQR()
